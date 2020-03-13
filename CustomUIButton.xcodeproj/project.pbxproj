@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		04327E47241C401B00762FBB /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04327E46241C401B00762FBB /* CustomButton.swift */; };
 		0450852A241C3F1500B65CB0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04508529241C3F1500B65CB0 /* AppDelegate.swift */; };
 		0450852C241C3F1500B65CB0 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0450852B241C3F1500B65CB0 /* SceneDelegate.swift */; };
 		0450852E241C3F1500B65CB0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0450852D241C3F1500B65CB0 /* ViewController.swift */; };
@@ -16,6 +17,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		04327E46241C401B00762FBB /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
 		04508526241C3F1500B65CB0 /* CustomUIButton.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CustomUIButton.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		04508529241C3F1500B65CB0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0450852B241C3F1500B65CB0 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -70,6 +72,7 @@
 			children = (
 				04508534241C3F1600B65CB0 /* LaunchScreen.storyboard */,
 				0450852F241C3F1500B65CB0 /* Main.storyboard */,
+				04327E46241C401B00762FBB /* CustomButton.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -178,6 +181,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				04327E47241C401B00762FBB /* CustomButton.swift in Sources */,
 				0450852E241C3F1500B65CB0 /* ViewController.swift in Sources */,
 				0450852A241C3F1500B65CB0 /* AppDelegate.swift in Sources */,
 				0450852C241C3F1500B65CB0 /* SceneDelegate.swift in Sources */,
