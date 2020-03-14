@@ -35,7 +35,33 @@ public final class CustomButton: UIButton {
     @IBInspectable public var cornerRadius: CGFloat = 10.0
     
     // Identifica se o botao esta ativo/desativo
-    @IBInspectable public var active: Bool = false
+//    @IBInspectable public var active: Bool = false
+    
+    
+    public override var isSelected: Bool {
+        didSet {
+            print("isSelected = \(oldValue)")
+            if oldValue == true {
+                setDeselected()
+            } else {
+                setSelected()
+            }
+        }
+    }
+    
+    
+    public override var isHighlighted: Bool {
+        didSet {
+            self.tintColor = UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 1.0)
+        }
+    }
+    
+    
+//    override public var isHighlighted: Bool {
+//        didSet {
+//            self.tintColor = UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 1.0)
+//        }
+//    }
     
     
     // MARK: - Private properties
@@ -48,6 +74,7 @@ public final class CustomButton: UIButton {
     // Realiza o desenho do conteudo da View - Botao
     public override func draw(_ rect: CGRect) {
         super.draw(rect)
+
         
         // Configurando a borda
         border.lineWidth = borderWidth
@@ -60,8 +87,16 @@ public final class CustomButton: UIButton {
         self.layer.cornerRadius = cornerRadius
         self.layer.masksToBounds = true
         
+        self.tintColor = .none
+        
+        
+        // Desabilitando isHighlighted para que o fundo do
+        // botao nao fique azul quando estiver no estado de Selected
+        self.isHighlighted = false
+//        self.adjustsImageWhenHighlighted = true
+        
         // Configurando o botao dependendo de qual estado ele esta
-        if active {
+        if isSelected {
             setSelected()
         } else {
             setDeselected()
@@ -78,12 +113,14 @@ public final class CustomButton: UIButton {
         border.strokeColor = borderColorSelected.cgColor
         
         // Mudando o estilo do texto
-        self.setTitle(selectedText, for: .normal)
-        self.setTitleColor(textColorSelected, for: .normal)
+//        self.tintColor = .clear
+        self.setTitle(selectedText, for: .selected)
+        self.setTitleColor(textColorSelected, for: .selected)
     }
     
     // Configurando o botao para quando ele nao estiver selecionado
     public func setDeselected() {
+        print(state.rawValue)
         // Mudando o estilo da borda
         border.lineDashPattern = [4, 4]
         border.strokeColor = borderColorDeselected.cgColor
@@ -99,14 +136,17 @@ public final class CustomButton: UIButton {
     @objc private func onPress() {
         print("Button pressed")
         
-        // Mudando o estado atual do botao
-        active = !active
+        isSelected = !isSelected
         
-        if active {
-            setSelected()
-        } else {
-            setDeselected()
-        }
+        
+        // Mudando o estado atual do botao
+//        active = !active
+        
+//        if active {
+//            setSelected()
+//        } else {
+//            setDeselected()
+//        }
     }
 }
 
