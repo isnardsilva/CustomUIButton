@@ -21,14 +21,17 @@ public final class CustomButton: UIButton {
     // Texto presente em cada estado do botao
     @IBInspectable public var selectedText: String = "Selected"
     @IBInspectable public var deselectedText: String = "Deselected"
+    @IBInspectable public var disabledText: String = "Disable"
     
     // Cor do texto em cada state do Botao
     @IBInspectable public var textColorSelected: UIColor = .gray
     @IBInspectable public var textColorDeselected: UIColor = .lightGray
+    @IBInspectable public var textColorDisabled: UIColor = .lightGray
     
     // Cores das bordas em cada state do Botao
     @IBInspectable public var borderColorSelected: UIColor = .purple
     @IBInspectable public var borderColorDeselected: UIColor = .purple
+    @IBInspectable public var borderColorDisabled: UIColor = .gray
     
     // Tamanho e arredondamento das bordas
     @IBInspectable public var borderWidth: CGFloat = 3.0
@@ -56,6 +59,14 @@ public final class CustomButton: UIButton {
         }
     }
     
+    // Controla o estado do botao quando ele estiver desabilitado
+    public override var isEnabled: Bool {
+        didSet {
+            if oldValue == true {
+                setDisabled()
+            }
+        }
+    }
     
     
     // MARK: - Private properties
@@ -87,18 +98,25 @@ public final class CustomButton: UIButton {
         self.isHighlighted = false
         
         // Configurando o botao dependendo de qual estado ele esta
-        if isSelected {
-            setSelected()
+        // Verificando se esta ativo
+        if isEnabled {
+            // Verificando se esta selecionado
+            if isSelected {
+                setSelected()
+            } else {
+                setDeselected()
+            }
         } else {
-            setDeselected()
+            setDisabled()
         }
+        
         
         // Add uma resposta ao toque do usuario no botao
         addTarget(self, action: #selector(onPress), for: .touchUpInside)
     }
     
     // Configurando o botao para quando ele estiver selecionado
-    public func setSelected() {
+    private func setSelected() {
         // Mudando o estilo da borda
         border.lineDashPattern = nil
         border.strokeColor = borderColorSelected.cgColor
@@ -110,8 +128,7 @@ public final class CustomButton: UIButton {
     }
     
     // Configurando o botao para quando ele nao estiver selecionado
-    public func setDeselected() {
-        print(state.rawValue)
+    private func setDeselected() {
         // Mudando o estilo da borda
         border.lineDashPattern = [4, 4]
         border.strokeColor = borderColorDeselected.cgColor
@@ -121,6 +138,16 @@ public final class CustomButton: UIButton {
         self.setTitleColor(textColorDeselected, for: .normal)
     }
     
+    private func setDisabled() {
+        // Mudando o estilo da borda
+        border.lineDashPattern = nil
+        border.strokeColor = borderColorDisabled.cgColor
+
+        
+        // Mudando o estilo do texto
+        self.setTitle(disabledText, for: .disabled)
+        self.setTitleColor(textColorDisabled, for: .disabled)
+    }
     
     
     // MARK: - Actions
