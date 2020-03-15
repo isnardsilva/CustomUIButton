@@ -40,12 +40,14 @@ public final class CustomButton: UIButton {
     
     // Controla a state de quando o botao esta selecionado
     public override var isSelected: Bool {
-        didSet {
-            print("isSelected = \(oldValue)")
-            if oldValue == true {
-                setDeselected()
-            } else {
+        // Pegando o momento em que o valor dessa variavel
+        // vai ser modificado
+        willSet {
+            print("isSelected = \(newValue)")
+            if newValue == true {
                 setSelected()
+            } else {
+                setDeselected()
             }
         }
     }
@@ -53,6 +55,8 @@ public final class CustomButton: UIButton {
     // Controla o estado de quando o usuario toca e tira o
     // dedo do botao
     public override var isHighlighted: Bool {
+        // Pegando o momento em que o valor dessa variavel
+        // foi modificado
         didSet {
             // Impedindo que ao clicar o fundo do botao fique azul
             self.tintColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.0)
@@ -61,8 +65,10 @@ public final class CustomButton: UIButton {
     
     // Controla o estado do botao quando ele estiver desabilitado
     public override var isEnabled: Bool {
-        didSet {
-            if oldValue == true {
+        // Pegando o momento em que o valor dessa variavel
+        // vai ser modificado
+        willSet {
+            if newValue == true {
                 setDisabled()
             }
         }
