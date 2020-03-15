@@ -52,7 +52,7 @@ public final class CustomButton: UIButton {
     
     public override var isHighlighted: Bool {
         didSet {
-            self.tintColor = UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 1.0)
+            self.tintColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.0)
         }
     }
     
